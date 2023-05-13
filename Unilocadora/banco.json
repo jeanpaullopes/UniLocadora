@@ -1,0 +1,53 @@
+{
+  "filmes" : [
+    {
+      "id": 1,
+      "titulo" : "O Poderoso Chefão",
+      "ano" : 1972,
+      "genero": "Drama",
+      "diretor" : "Francis Ford Coppola",
+      "atores" : [
+        "Marlon Brando",
+        "Al Pacino",
+        "James Caan"
+      ]
+    },
+    {
+      "id": 2,
+      "titulo" : "O Poderoso Chefão II",
+      "ano" : 1974,
+      "genero": "Drama",
+      "diretor" : "Francis Ford Coppola",
+      "atores" : [
+        "Al Pacino",
+        "Robert De Niro",
+        "Robert Duvall"
+      ]
+    },
+    {
+      "id": 3,
+      "titulo" : "O Poderoso Chefão III",
+      "ano" : 1990,
+      "genero": "Drama",
+      "diretor" : "Francis Ford Coppola",
+      "atores" : [
+        "Al Pacino",
+        "Diane Keaton",
+        "Andy Garcia"
+      ]
+    },
+    {
+      "id": 4,
+      "titulo" : "Cassino",
+      "ano" : 1990,
+      "genero": "Drama",
+      "diretor" : "Francis Ford Coppola",
+      "atores" : [
+
+        "Diane Keaton",
+        "Andy Garcia"
+      ]
+    }
+  ],
+  "generos":["Drama", "Comédia", "Ação", "Terror", "Suspense"]
+}
