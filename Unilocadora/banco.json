@@ -223,6 +223,28 @@
         "Diane Keaton",
         "Andy Garcia"
       ]
+    },
+    {
+      "titulo": "Coringa",
+      "diretor": "Todd Phillips",
+      "ano": "2019",
+      "genero": "Suspense",
+      "atores": [
+        "Joaquim Phoenix"
+      ],
+      "id": 5
+    },
+    {
+      "titulo": "Star Wars ep 4",
+      "diretor": "George Lucas",
+      "ano": "1977",
+      "genero": "Aventura, Sci-fi",
+      "atores": [
+        "Harrison Ford",
+        " Mark Hamil",
+        " Carrie Fischer"
+      ],
+      "id": 6
     }
   ],
   "generos": [

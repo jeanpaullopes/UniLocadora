@@ -28,17 +28,17 @@ const services = {
     }
   },
   getFilmesByActor(actor) {
-    return filmesStore.getFilmesByActor(actor);
+    return appStore.getFilmesByActor(actor);
   },
   saveFilme(filme) {
-    filmesStore.addFilme(filme);
+    appStore.addFilme(filme);
 
-    /* api.post('/filmes', filme).then((response)=>{
-      filmesStore.setFilmes(response.data)
-    }).catch((error)=>{
+    api.post('/filmes', filme).then((response) => {
+      appStore.setFilmes(response.data)
+    }).catch((error) => {
       alert(error.message)
     })
-    */
+
   },
   saveCliente(cliente, callback) {
     api

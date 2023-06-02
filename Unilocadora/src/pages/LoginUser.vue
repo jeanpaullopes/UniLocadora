@@ -1,73 +1,56 @@
 <template>
-  <q-page
-    class="justify-center items-center row"
-    style="background: rgb(247, 255, 137); background: #fff"
-  >
-    <main style="display: flex" scroll="no">
+  <q-page class="login-page">
+    <main>
       <!-- <img id="logo" src="../assets/logo.png" /> -->
 
-      <div class="column">
-        <q-card id="login">
+      <div class="login-card">
+        <q-card class="q-pa-md" color="primary">
           <q-card-section>
-            <q-form>
-              <!-- Mudar a cor do label -->
-              <div class="row">
-                <label class="text" id="labelEmail">E-mail</label>
-                <input
-                  style="
-                    background: white;
-                    padding-top: 1rem;
-                    border: 2px solid #ffc107;
-                    border-radius: 4px;
-                    border-width: 1px;
-                    margin-bottom: 1rem;
-                  "
-                  class="col-12"
-                  id="email"
+            <q-form class="q-gutter-md">
+              <div class="form-row">
+                <label class="form-label">Email</label>
+                <q-input
+                  class="form-input"
                   outlined
                   v-model="email"
                   type="email"
-                  label="email ou CPF"
-                  color="blue"
+                  color="primary"
+                  dense
                 />
               </div>
-              <!-- Mudar a cor do label -->
-              <div class="row">
-                <label class="text" id="senha">Senha</label>
-                <input
-                  style="
-                    background: white;
-                    padding-top: 1rem;
-                    border: 2px solid #ffc107;
-                    border-radius: 4px;
-                    border-width: 1px;
-                    margin-bottom: 1rem;
-                  "
-                  class="col-12"
-                  id="password"
+              <div class="form-row">
+                <label class="form-label">Senha</label>
+                <q-input
+                  class="form-input"
                   outlined
                   v-model="password"
                   type="password"
-                  label="Digite a sua senha"
-                  color="blue"
+                  color="primary"
+                  dense
                 />
               </div>
             </q-form>
           </q-card-section>
-          <q-card-actions class="q-px-md">
+          <q-card-actions>
             <q-btn
-              id="botaoLogin"
-              unelevated
-              color="amber"
+              flat
+              color="primary"
               size="lg"
               class="full-width"
-              label="Login"
-              @click="this.onClick"
+              label="Entrar"
+              @click="onClick"
+              style="
+                font-family: 'Arial', sans-serif;
+                font-weight: bold;
+                text-transform: uppercase;
+              "
             />
           </q-card-actions>
-          <q-card-section class="text-center q-pa-none text-black">
-            Ainda não é cadastrado?
-            <CadastrarUsuario />
+          <q-card-section class="text-center q-pa-none">
+            <div class="registration-link">
+              Ainda não é cadastrado?
+              <CadastrarUsuario />
+            </div>
           </q-card-section>
         </q-card>
       </div>
@@ -77,7 +60,6 @@
 
 <script>
 import CadastrarUsuario from "../components/modal/CadastrarUsuario.vue";
-import CadastroFilme from "./CadastroFilme.vue"
 import { useRouter } from "vue-router";
 const router = useRouter();
 
@@ -100,7 +82,7 @@ export default {
         if (user.email === this.email && user.senha === this.password) {
           // Login bem-sucedido, fazer outras ações
           alert(`Bem-vindo, ${user.nome}!`);
-          router.push({ CadastroFilme });
+          this.$router.push("/cadastroFilme");
           // Limpar os campos de email e senha
         } else {
           // Credenciais inválidas, exibir mensagem de erro
@@ -116,49 +98,54 @@ export default {
 </script>
 
 <style>
-@font-face {
-  font-family: "CherryBombOne"; /* src\pages\LoginUser.vue*/
-  src: url("../css/fonts/CherryBombOne-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-#login {
-  width: 96%;
-  height: 100%;
-  padding-top: 50px;
-}
-
-#login {
-  background-color: #fcf15f;
-  padding: 13rem;
-  color: rgb(255, 255, 255);
-  margin: 4rem;
-  justify-items: center;
+.login-page {
+  background: #141414;
+  display: flex;
+  justify-content: center;
   align-items: center;
-
-  border-radius: 30rem;
+  min-height: 100vh;
 }
 
-#botaoLogin {
-  font-family: "CherryBombOne", sans-serif;
-}
-
-#input {
-  /* border: 2px solid rgb(0, 48, 70); */
+.login-card {
+  width: 400px;
+  max-width: 90%;
+  background-color: #fff;
+  padding: 2rem;
+  color: #333;
+  margin: 4rem;
   border-radius: 4px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
-#email {
-  background-color: #00000000;
-}
-#labelEmail,
-#senha {
-  font-family: "CherryBombOne", sans-serif;
-  font-size: large;
-  color: rgb(156, 136, 22);
+.form-label {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 0.5rem;
 }
 
-#password {
-  background-color: #00000000;
+.form-input {
+  background-color: #f5f5f5;
+  border-color: #ccc;
+  color: #333;
+}
+
+.q-input__control,
+.q-input__details {
+  height: 42px;
+}
+
+.q-btn__content {
+  font-size: 18px;
+}
+
+.text {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.registration-link {
+  margin-top: 1rem;
+  font-size: 14px;
+  color: #666;
 }
 </style>
