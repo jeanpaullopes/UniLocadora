@@ -6,6 +6,7 @@
     </q-card-section>
 
     <q-card-section>
+      <CardCarrinho :carrinho="carrinho" />
       <ul>
         <li v-for="ator in filme.atores" v-bind:key="ator">{{ ator }}</li>
       </ul>
@@ -24,10 +25,13 @@
 </template>
 
 <script>
+import CardCarrinho from "./cardCarrinho.vue";
+
 export default {
   props: {
     filme: Object,
     logado: Boolean,
+    carrinho: Object,
   },
   methods: {
     locar() {
@@ -37,6 +41,7 @@ export default {
       this.$emit("comprarFilme", this.filme);
     },
   },
+  components: { CardCarrinho },
 };
 </script>
 

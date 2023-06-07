@@ -1,4 +1,7 @@
 {
+  "logins": [
+    { "id": "jean.lopes@ulife.com.br", "idCliente": 2, "senha": "123456" }
+  ],
   "clientes": [
     {
       "id": 1,
@@ -183,11 +186,7 @@
       "ano": 1972,
       "genero": "Drama",
       "diretor": "Francis Ford Coppola",
-      "atores": [
-        "Marlon Brando",
-        "Al Pacino",
-        "James Caan"
-      ]
+      "atores": ["Marlon Brando", "Al Pacino", "James Caan"]
     },
     {
       "id": 2,
@@ -195,11 +194,7 @@
       "ano": 1974,
       "genero": "Drama",
       "diretor": "Francis Ford Coppola",
-      "atores": [
-        "Al Pacino",
-        "Robert De Niro",
-        "Robert Duvall"
-      ]
+      "atores": ["Al Pacino", "Robert De Niro", "Robert Duvall"]
     },
     {
       "id": 3,
@@ -207,11 +202,7 @@
       "ano": 1990,
       "genero": "Drama",
       "diretor": "Francis Ford Coppola",
-      "atores": [
-        "Al Pacino",
-        "Diane Keaton",
-        "Andy Garcia"
-      ]
+      "atores": ["Al Pacino", "Diane Keaton", "Andy Garcia"]
     },
     {
       "id": 4,
@@ -219,17 +210,8 @@
       "ano": 1990,
       "genero": "Drama",
       "diretor": "Francis Ford Coppola",
-      "atores": [
-        "Diane Keaton",
-        "Andy Garcia"
-      ]
+      "atores": ["Diane Keaton", "Andy Garcia"]
     }
   ],
-  "generos": [
-    "Drama",
-    "Comédia",
-    "Ação",
-    "Terror",
-    "Suspense"
-  ]
+  "generos": ["Drama", "Comédia", "Ação", "Terror", "Suspense"]
 }

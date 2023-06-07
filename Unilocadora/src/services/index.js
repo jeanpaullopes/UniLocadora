@@ -1,6 +1,6 @@
 import api from "./api";
 import { appStore } from "src/stores/appStore";
-
+const storage = window.localStorage;
 const services = {
   getAllFilmes(callback) {
     if (appStore.filmes.length == 0) {
@@ -53,6 +53,44 @@ const services = {
       })
       .catch((error) => {
         alert(error.message);
+      });
+  },
+  checkLogado() {
+    if (storage.getItem("cliente") != null) {
+      appStore.setCliente(JSON.parse(storage.getItem("cliente")));
+    }
+  },
+  logout() {
+    storage.removeItem("cliente");
+    appStore.setCliente(null);
+  },
+  login(email, senha, callback) {
+    api
+      .get("/logins/" + email)
+      .then((response) => {
+        //console.log(response.data);
+        //console.log(response.status);
+        //console.log(response.statusText);
+        //console.log(response.headers);
+        //console.log(response.config);
+
+        if (response.data.id == undefined) {
+          callback(false);
+        } else {
+          if (response.data.senha == senha) {
+            api.get("/clientes/" + response.data.idCliente).then((response) => {
+              appStore.setCliente(response.data);
+
+              storage.setItem("cliente", JSON.stringify(response.data));
+              callback(true);
+            });
+          } else {
+            callback(false);
+          }
+        }
+      })
+      .catch((error) => {
+        callback(false);
       });
   },
 };

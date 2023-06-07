@@ -1,39 +1,3 @@
-<template>
-  <q-page class="flex flex-center">
-    <div v-if="naoLogado()">
-      olá! seja bem vindo! faça seu login
-      <q-btn @click="login">Login</q-btn>
-      ou cadastra-se
-      <q-btn @click="showFormCliente = !showFormCliente">Novo Cliente</q-btn>
-    </div>
-    <!--
-    <RouterLink to="/cadastroFilme">Cadastro de Filmes</RouterLink>
-    <a href="/cadastroFilme">Cadastro de Filmes</a>
-    -->
-
-    <form-cliente
-      @salvarCliente="onSalvarCliente"
-      v-if="showFormCliente"
-      :cliente="{
-        id: 0,
-        nome: '',
-        email: '',
-        telefone: '',
-        cpf: '',
-      }"
-    />
-
-    <FilmeCard
-      :logado="!naoLogado()"
-      v-for="f in filmes"
-      v-bind:key="f.id"
-      :filme="f"
-      @locarFilme="onLocarFilme"
-      @comparFilme="onComprarFilme"
-    />
-  </q-page>
-</template>
-
 <script>
 import { useQuasar } from "quasar";
 import FormCliente from "src/components/FormCliente.vue";
@@ -41,20 +5,23 @@ import Services from "src/services";
 import { appStore } from "src/stores/appStore";
 import { defineComponent } from "vue";
 import FilmeCard from "../components/FilmeCard.vue";
+import CardCarrinho from "../components/cardCarrinho.vue";
 
 export default defineComponent({
-  components: { FormCliente, FilmeCard },
+  components: { FormCliente, FilmeCard, CardCarrinho },
   name: "IndexPage",
   data() {
     return {
       filmes: Array,
       showFormCliente: false,
+      carrinho: appStore.carrinho,
     };
   },
   created() {
     Services.getAllFilmes((data) => {
       this.filmes = data;
     });
+    Services.checkLogado();
   },
   methods: {
     login() {
@@ -63,6 +30,9 @@ export default defineComponent({
         nome: "teste",
         email: "",
       };
+    },
+    logout() {
+      Services.logout();
     },
     onLocarFilme(filme) {
       appStore.carrinho.cliente = appStore.cliente;
@@ -90,3 +60,46 @@ export default defineComponent({
   },
 });
 </script>
+
+<template>
+  <q-page class="flex flex-center">
+    <div>
+      <CardCarrinho :carrinho="carrinho" />
+    </div>
+    <div v-if="!naoLogado()">
+      <q-btn @click="logout">Logout</q-btn>
+    </div>
+    <div v-if="naoLogado()">
+      olá! seja bem vindo! faça seu login
+      <q-btn to="/login">Login</q-btn>
+      ou cadastra-se
+      <q-btn @click="showFormCliente = !showFormCliente">Novo Cliente</q-btn>
+    </div>
+    <!--
+    <RouterLink to="/cadastroFilme">Cadastro de Filmes</RouterLink>
+    <a href="/cadastroFilme">Cadastro de Filmes</a>
+    -->
+
+    <form-cliente
+      @salvarCliente="onSalvarCliente"
+      v-if="showFormCliente"
+      :cliente="{
+        id: 0,
+        nome: '',
+        email: '',
+        telefone: '',
+        cpf: '',
+      }"
+    />
+
+    <FilmeCard
+      :logado="!naoLogado()"
+      v-for="f in filmes"
+      v-bind:key="f.id"
+      :filme="f"
+      :carrinho="carrinho"
+      @locarFilme="onLocarFilme"
+      @comparFilme="onComprarFilme"
+    />
+  </q-page>
+</template>
